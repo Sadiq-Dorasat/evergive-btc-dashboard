@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EverGive Bitcoin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-left-links nav-desktop">
+            <a href="https://www.evergive.com/" target="_blank" rel="noopener">ABOUT</a>
+            <a href="https://www.evergive.com/company/contact" target="_blank" rel="noopener">CONTACT</a>
+        </div>
+        <div class="nav-center-logo">
+            <a href="#"><img src="evergive-logo.svg" alt="EverGive Logo" class="evergive-logo"></a>
+        </div>
+        <div class="nav-right-links nav-desktop">
+            <a href="https://app.evergive.com/donate" target="_blank" rel="noopener" class="donate-btn">DONATE</a>
+        </div>
+        <!-- Mobile menu button -->
+        <button class="nav-mobile-menu-btn" id="nav-mobile-menu-btn" aria-label="Open menu">
+            <span id="nav-mobile-menu-icon">+</span>
+        </button>
+        <!-- Mobile dropdown menu -->
+        <div class="nav-mobile-dropdown" id="nav-mobile-dropdown">
+            <a href="https://www.evergive.com/" target="_blank" rel="noopener">About</a>
+            <a href="https://www.evergive.com/company/contact" target="_blank" rel="noopener">Contact</a>
+            <a href="https://app.evergive.com/donate" target="_blank" rel="noopener" class="donate-btn">Donate</a>
+        </div>
+    </nav>
+
+    <div class="dashboard-hero">
+        <div class="metrics-container">
+            <div class="metrics-row metric-row-single">
+                <div class="metric-item">
+                    <div class="metric-title">CURRENT CHARITY RESERVE VALUE</div>
+                    <div class="metric-value" id="current-investment-value">$--</div>
+                </div>
+            </div>
+            <div class="metrics-row metric-row-single">
+                <div class="metric-item">
+                    <div class="metric-title">TOTAL BTC HELD</div>
+                    <div class="metric-value" id="total-btc-held">-- BTC</div>
+                </div>
+            </div>
+            <div class="metrics-row metrics-row-bottom">
+                <div class="metric-item metric-item-third metric-item-left">
+                    <div class="metric-title">TOTAL DONATED</div>
+                    <div class="metric-value" id="total-invested">$--</div>
+                </div>
+                <div class="metric-divider"></div>
+                <div class="metric-item metric-item-third metric-item-center">
+                    <div class="metric-title">PERFORMANCE</div>
+                    <div class="metric-value" id="performance">
+                        <span id="performance-percent">--%</span>
+                        <div class="performance-change" id="performance-change"></div>
+                    </div>
+                </div>
+                <div class="metric-divider"></div>
+                <div class="metric-item metric-item-third metric-item-right">
+                    <div class="metric-title">AVERAGE AND CURRENT BTC PRICE</div>
+                    <div class="metric-value" id="btc-price-info">Avg: $-- <br> Current: $--</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EverGive Mission Section -->
+    <section class="evergive-mission">
+        <div class="mission-content">
+            <h2>
+                EverGive is building a strategic Bitcoin reserve to support charitable causes <b><i>forever</i></b>. Instead of spending your donation immediately, we invest it in Bitcoin and build the charity reserve. It's a way to make your giving last generations.
+            </h2>
+            <a href="https://app.evergive.com/donate" target="_blank" rel="noopener" class="mission-cta">Join the mission</a>
+            <div class="mission-subtext">Grow a strategic Bitcoin reserve for good.</div>
+            <a href="https://evergive.com" target="_blank" rel="noopener" class="mission-learn-more">Learn More</a>
+        </div>
+    </section>
+    <!-- End EverGive Mission Section -->
+
+    <div class="transactions-section">
+        <h2>Purchases</h2>
+        <table id="transactions-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Average BTC Purchase Price (USD)</th>
+                    <th>Amount (BTC)</th>
+                    <th>Cost (USD)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2025-03-27</td>
+                    <td>$86,925.26</td>
+                    <td>1.15</td>
+                    <td>$99,964.05</td>
+                </tr>
+                <tr>
+                    <td>2025-05-06</td>
+                    <td>$94,588.84</td>
+                    <td>10.53</td>
+                    <td>$996,000.00</td>
+                </tr>
+                <tr>
+                    <td>2025-05-21</td>
+                    <td>$106,388.69</td>
+                    <td>0.94</td>
+                    <td>$99,005.00</td>
+                </tr>
+                <!-- More transactions will be added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

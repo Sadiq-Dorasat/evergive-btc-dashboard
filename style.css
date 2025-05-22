@@ -1,0 +1,689 @@
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+    padding-top: 60px; /* Height of the navbar */
+    display: flex;
+    flex-direction: column; /* Stack direct children vertically */
+    align-items: center; /* Center direct children horizontally */
+    justify-content: flex-start; /* Align content to the top */
+    min-height: calc(100vh - 60px); /* Ensure body itself can fill space under nav */
+    /* text-align: center; can be kept or removed as children manage their own text alignment */
+}
+
+.dashboard-hero {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    box-sizing: border-box;
+    /* text-align: center; Removed - block centering by body, text centering by .metric-item */
+    min-height: calc(100vh - 60px); /* Fill viewport height minus navbar */
+    display: flex; /* Use flex to help center/distribute content vertically */
+    flex-direction: column; /* Stack metrics container vertically */
+    justify-content: center; /* Center metrics container vertically */
+    align-items: center; /* Center metrics container horizontally */
+}
+
+.metrics-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Space between rows */
+    width: 100%;
+    /* flex-grow: 1; Allow container to grow if dashboard-hero has extra space */
+    justify-content: center; /* Center rows vertically if container grows */
+}
+
+.metrics-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Make items in a row stretch to the same height */
+    gap: 20px;
+    width: 100%;
+    /* flex-grow: 1; Allow rows to grow if container has extra space */
+}
+
+.metric-item {
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+    box-sizing: border-box;
+    display: flex; /* For centering content within item */
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    padding: 20px 10px; /* Add some padding inside metric items */
+}
+
+.metric-item:not(:last-child) {
+    border-right: 1px solid #e0e0e0; /* Faint divider for desktop/tablet */
+}
+
+.metric-title {
+    font-size: 1.15em;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #555;
+    margin-bottom: 8px;
+    text-align: center;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.metric-value {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+/* Specific font sizes for top and bottom rows */
+.metrics-row:first-child .metric-value {
+    font-size: clamp(48px, 6.2vw, 85px); /* Using clamp for responsive size with min/max */
+    line-height: 1.1;
+}
+
+.metrics-row:last-child .metric-value {
+    font-size: 3.7vw; /* Slightly reduced */
+    line-height: 1.1;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .dashboard-hero {
+        min-height: auto; /* Allow hero to shrink on mobile if content is less */
+        padding: 20px 10px;
+    }
+    .metrics-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .metric-item {
+        width: 100%;
+        max-width: 300px; /* Max width for items on mobile */
+        /* margin-bottom: 20px; --- Removed to rely on parent gap */
+        padding-bottom: 0; /* Ensure no extra padding if added before */
+    }
+
+    /* Adjust borders for stacked view */
+    .metric-item:not(:last-child) {
+        border-right: none; /* Remove side border */
+        border-bottom: 1px solid #e0e0e0; /* Add bottom border */
+        padding-right: 0; /* Remove any padding if it was for the right border */
+        padding-bottom: 30px; /* Add padding to visually include border within item before gap */
+    }
+
+    .metric-value {
+        font-size: 2em;
+    }
+
+    .metrics-row:first-child .metric-value {
+        font-size: clamp(40px, 8.5vw, 75px); /* Using clamp */
+    }
+
+    .metrics-row:last-child .metric-value {
+        font-size: 6vw; /* Slightly reduced */
+    }
+
+    .metrics-container {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .metric-title {
+        font-size: 0.7em;
+    }
+    .metric-value {
+        font-size: 1.8em;
+    }
+
+    .metrics-row:first-child .metric-value {
+        font-size: clamp(36px, 10vw, 65px); /* Using clamp */
+    }
+
+    .metrics-row:last-child .metric-value {
+        font-size: 7vw; /* Slightly reduced */
+    }
+}
+
+/* Transactions Table Styling */
+.transactions-section {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-top: 60px; /* Increased space above the table */
+    /* text-align: left; -- body align-items:center should handle block centering */
+}
+
+.transactions-section h2 {
+    text-align: left; /* Changed from center to left */
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+#transactions-table {
+    width: 100%;
+    border-collapse: collapse; /* Removes default spacing between cells */
+    margin: 0 auto; /* Center the table if it's narrower than its container */
+}
+
+#transactions-table th, #transactions-table td {
+    border: 1px solid #dddddd; /* Light grey border for cells */
+    padding: 12px;
+    text-align: left;
+}
+
+#transactions-table th {
+    background-color: #f0f0f0; /* Light grey background for headers */
+    color: #333333; /* Darker text for header */
+    font-weight: bold;
+}
+
+#transactions-table tr:nth-child(even) td {
+    background-color: #f9f9f9; /* Zebra striping for rows */
+}
+
+#transactions-table tr:hover td {
+    background-color: #f1f1f1; /* Highlight row on hover */
+}
+
+/* Responsive table: make it scrollable on small screens */
+@media (max-width: 768px) {
+    .transactions-section {
+        text-align: center; /* Center align content on mobile */
+    }
+    #transactions-table {
+        display: block;
+        overflow-x: auto; /* Allows horizontal scrolling */
+        white-space: nowrap; /* Prevents table content from wrapping */
+    }
+    #transactions-table th, #transactions-table td {
+        white-space: nowrap; /* Ensure cells don't wrap, contributing to scroll */
+    }
+    .transactions-section h2 {
+        font-size: 1.5em;
+    }
+}
+
+/* Navigation Bar Styling */
+.top-nav {
+    width: 100%;
+    background: #fff; /* Solid white background */
+    background-color: #fff;
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    height: 60px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.nav-left-links, .nav-center-logo, .nav-right-links {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.nav-left-links {
+    justify-content: flex-start;
+}
+.nav-left-links a:not(:last-child) {
+    margin-right: 25px;
+}
+
+.nav-center-logo {
+    justify-content: center;
+}
+
+.nav-right-links {
+    justify-content: flex-end;
+}
+
+.top-nav a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    transition: color 0.2s;
+}
+
+.top-nav a:hover {
+    color: #01422E;
+}
+
+.nav-center-logo a {
+    font-size: 1.8em;
+}
+
+.evergive-logo {
+    height: 40px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+    filter: none; /* Show original logo color */
+}
+
+.donate-btn {
+    background: #fff;
+    color: #01422E !important;
+    border: 2px solid #01422E;
+    border-radius: 20px;
+    padding: 8px 24px;
+    font-weight: bold;
+    font-size: 1em;
+    margin-left: 20px;
+    box-shadow: none;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+    outline: none;
+    display: inline-block;
+}
+.donate-btn:hover {
+    background: #01422E;
+    color: #fff !important;
+    border: 2px solid #01422E;
+}
+
+/* Adjust body padding to account for fixed navbar */
+body {
+    padding-top: 60px; /* Height of the navbar */
+    padding-bottom: 60px; /* Height of the navbar */
+}
+
+.performance-change {
+    font-size: 0.6em;
+    margin-top: 0.2em;
+    display: block;
+}
+
+.evergive-mission {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto 40px auto;
+    padding: 40px 24px 32px 24px;
+    background: #f7faf9;
+    border-radius: 24px;
+    box-shadow: 0 4px 32px rgba(1,66,46,0.07);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.mission-content h2 {
+    font-size: 2.1em;
+    font-weight: 700;
+    margin-bottom: 28px;
+    color: #01422E;
+    line-height: 1.25;
+}
+.mission-content .forever-em b i {
+    font-weight: 700;
+    font-style: italic;
+    color: #01422E;
+}
+.mission-cta {
+    display: inline-block;
+    background: #01422E;
+    color: #fff !important;
+    font-size: 1.3em;
+    font-weight: bold;
+    padding: 18px 48px;
+    border-radius: 32px;
+    margin: 18px 0 10px 0;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(1,66,46,0.13);
+    letter-spacing: 0.04em;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.mission-cta:hover {
+    background: #026b46;
+    color: #fff !important;
+    box-shadow: 0 6px 24px rgba(1,66,46,0.18);
+}
+.mission-subtext {
+    font-size: 1.1em;
+    color: #01422E;
+    margin-top: 10px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+.mission-learn-more {
+    display: block;
+    margin-top: 6px;
+    font-size: 1em;
+    color: #01422E;
+    text-decoration: underline;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.mission-learn-more:hover {
+    color: #026b46;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .evergive-mission {
+        padding: 28px 8px 24px 8px;
+        border-radius: 16px;
+    }
+    .mission-content h2 {
+        font-size: 1.2em;
+    }
+    .mission-cta {
+        font-size: 1em;
+        padding: 14px 28px;
+    }
+}
+
+/* Responsive Nav for Mobile */
+@media (max-width: 900px) {
+    .nav-desktop {
+        display: none !important;
+    }
+    .nav-mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+        font-size: 2.2em;
+        color: #01422E;
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        z-index: 1101;
+        cursor: pointer;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+    }
+    .nav-mobile-menu-btn:focus {
+        outline: 2px solid #01422E;
+    }
+    .nav-mobile-menu-btn span {
+        font-size: 1.5em;
+        font-weight: 400;
+        line-height: 1;
+        pointer-events: none;
+        color: #01422E;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 44px;
+        width: 44px;
+        /* Use a slightly lighter color for a softer look if desired */
+        /* color: #26705a; */
+    }
+    .nav-center-logo {
+        flex: none;
+        margin: 0 auto;
+        justify-content: center;
+        width: 100%;
+    }
+    .nav-center-logo a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .evergive-logo {
+        height: 36px;
+        width: auto;
+    }
+    .nav-mobile-dropdown {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100vw;
+        background: #fff;
+        box-shadow: 0 4px 24px rgba(1,66,46,0.07);
+        z-index: 1100;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 32px 24px 24px 24px;
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+        animation: fadeInMenu 0.2s;
+    }
+    .nav-mobile-dropdown.open {
+        display: flex;
+    }
+    .nav-mobile-dropdown a {
+        color: #01422E;
+        font-size: 1.3em;
+        font-weight: bold;
+        margin-bottom: 24px;
+        text-decoration: none;
+        letter-spacing: 0.02em;
+        transition: color 0.2s;
+    }
+    .nav-mobile-dropdown a:last-child {
+        margin-bottom: 0;
+    }
+    .nav-mobile-dropdown .donate-btn {
+        background: #01422E;
+        color: #fff !important;
+        border-radius: 20px;
+        padding: 12px 32px;
+        font-size: 1.1em;
+        margin-top: 8px;
+        margin-bottom: 0;
+        box-shadow: 0 2px 8px rgba(1,66,46,0.10);
+        border: none;
+        display: inline-block;
+    }
+    .nav-mobile-dropdown .donate-btn:hover {
+        background: #026b46;
+    }
+    .metrics-container {
+        gap: 24px;
+        width: 100%;
+        max-width: 100vw;
+        padding: 0 0 0 0;
+    }
+    .metric-row-single {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+        align-items: stretch;
+    }
+    .metric-row-double {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+        align-items: stretch;
+        position: relative;
+        background: none;
+    }
+    .metric-item {
+        width: 100%;
+        max-width: 100vw;
+        min-width: 0;
+        box-sizing: border-box;
+        text-align: center;
+        padding: 18px 8px;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+    .metric-item-half {
+        flex: 1 1 50%;
+        width: 50%;
+        min-width: 0;
+        max-width: 50vw;
+        padding: 18px 4px;
+        box-sizing: border-box;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .metric-item-left {
+        border-right: none;
+    }
+    .metric-item-right {
+        border-left: none;
+    }
+    .metric-divider {
+        width: 1px;
+        background: #e0e0e0;
+        margin: 0 0px;
+        height: 60px;
+        align-self: center;
+        display: block;
+    }
+    .metrics-row:not(.metric-row-double) .metric-item:not(:last-child) {
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 18px;
+    }
+    .metrics-row.metric-row-double .metric-item {
+        border: none;
+        padding-bottom: 0;
+    }
+    .metrics-row.metric-row-double {
+        margin-bottom: 0;
+    }
+    .metric-title, .metric-value, .performance-change {
+        max-width: 100vw;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+    .evergive-mission, .mission-content h2, .mission-subtext, .mission-learn-more {
+        max-width: 100vw;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+    .metrics-row.metric-row-single:nth-child(1) .metric-value {
+        font-size: clamp(2em, 9vw, 3em);
+        line-height: 1.1;
+        width: 100%;
+        word-break: break-word;
+    }
+    .metrics-row.metric-row-single:nth-child(2) .metric-value {
+        font-size: clamp(1.3em, 5vw, 2em);
+        line-height: 1.1;
+        width: 100%;
+        word-break: break-word;
+    }
+    .metrics-row.metric-row-double .metric-value {
+        font-size: clamp(1.1em, 4.5vw, 1.5em);
+        line-height: 1.1;
+        width: 100%;
+        word-break: break-word;
+    }
+    .metrics-row.metric-row-single:nth-child(4) .metric-value {
+        font-size: clamp(1.1em, 4.5vw, 1.5em);
+        line-height: 1.1;
+        width: 100%;
+        word-break: break-word;
+    }
+}
+@keyframes fadeInMenu {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hide mobile menu button and dropdown on desktop */
+@media (min-width: 901px) {
+    .nav-mobile-menu-btn, .nav-mobile-dropdown {
+        display: none;
+    }
+}
+
+/* Desktop and mobile: Make BTC price row same size as invested/performance */
+.metrics-row.metric-row-single:last-child .metric-value {
+    font-size: clamp(1.1em, 2vw, 1.5em);
+    line-height: 1.1;
+    width: 100%;
+    word-break: break-word;
+}
+
+@media (max-width: 900px) {
+    .metrics-row.metric-row-single:nth-child(4) .metric-value {
+        font-size: clamp(1.1em, 4.5vw, 1.5em);
+        line-height: 1.1;
+        width: 100%;
+        word-break: break-word;
+    }
+}
+
+/* Desktop: 3-metric bottom row */
+.metrics-row.metrics-row-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+    gap: 0;
+    margin-bottom: 0;
+    border-bottom: none;
+}
+.metric-item-third {
+    flex: 1 1 33%;
+    min-width: 0;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 24px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.metrics-row.metrics-row-bottom .metric-title {
+    font-size: clamp(0.9em, 1.1vw, 1.1em);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #555;
+    margin-bottom: 8px;
+    text-align: center;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+.metrics-row.metrics-row-bottom .metric-value {
+    font-size: clamp(1.4em, 2.7vw, 2.2em);
+    font-weight: bold;
+    line-height: 1.1;
+    width: 100%;
+    text-align: center;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+.metrics-row.metrics-row-bottom .performance-change {
+    font-size: 0.7em;
+}
+.metrics-row.metrics-row-bottom .metric-divider {
+    width: 1px;
+    background: #e0e0e0;
+    margin: 0;
+    height: 60px;
+    align-self: center;
+    display: block;
+}
+@media (max-width: 900px) {
+    .metrics-row.metrics-row-bottom {
+        flex-direction: column;
+        gap: 0;
+    }
+    .metrics-row.metrics-row-bottom .metric-divider {
+        display: none;
+    }
+    .metric-item-third {
+        width: 100%;
+        max-width: 100vw;
+        min-width: 0;
+        padding: 18px 8px;
+    }
+} 
