@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300" height="60" viewBox="0 0 300 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g fill="#FFFFFF">
+    <!-- L mark -->
+    <path d="M0 0h16v40h24v16H0V0z"/>
+    <!-- EverGive text -->
+    <path d="M10 15
+             h25v6h-15v8h13v6h-13v8h15v6h-25V15z
+             M45 15h45v6h-17v28h-11V21h-17v-6z
+             M100 15h11v34h19v6h-30V15z
+             M140 32
+             c0-10 8-18 18-18s18 8 18 18-8 18-18 18-18-8-18-18zm9 0
+             c0 5 4 9 9 9s9-4 9-9-4-9-9-9-9 4-9 9z
+             M195 15h11v17l20-17h12l-20 17 20 23h-12l-15-17-5 4v13h-11V15z"/>
+  </g>
+</svg> 
